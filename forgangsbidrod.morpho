@@ -51,14 +51,13 @@
 buaTil =
 	fun()
 	{
-		var l;
-        &f;
+		var f = [];
 	};
 
 erTom =
     fun(f)
     {
-        if ( *f==[] ){
+        if ( f==[] ){
             return true;
         } else {
             return false;
@@ -68,26 +67,17 @@ baetaI =
     fun(f,g,k)
     {
         return insert(f,g:k);
-    }
+    };
 saekja = 
     fun(f)
     {
         val res = tail(head(f));
         f = tail(f);
         return res;
-    }
+    };
 
 }}
 *
-"insert.mmod"
-*
-{{
-<<== = fun erAUndan(x,y);
-}}
-;
-
-
-"insert.mmod" = 
 !
 {{
 insert =
@@ -98,16 +88,20 @@ insert =
 		head(x) : insert(tail(x),u);
 	};
 }}
+*
+{{
+<<== = fun erAUndan(x,y);
+}}
 ;
 
-show "insert.mmod"; ;; spurning hvad thetta gerir
+show "forgangsbidrod.mmod";
 
 "test1.mexe" = main in
 {{
 main =
 	fun()
 	{
-        f = buaTil();
+        var f = buaTil();
 		var x=[1,9,2,8,3,7,4,6,5];
 		while( x!=[] )
 		{
@@ -125,9 +119,12 @@ main =
             ;;; tolurnar sem eru skrifadar ut
             ;;; pokinn {1,2,3,4,5,6,7,8,9}
 		    writeln(saekja(f));
-        }
+        };
+        writeln("hello");
 	};
 }}
+*
+"forgangsbidrod.mmod"
 *
 {{
 erAUndan = fun <(x,y);
@@ -135,6 +132,3 @@ erAUndan = fun <(x,y);
 *
 BASIS
 ;
-
-;;; copya thessa keyrslu med 
-;;; erAUndan = fun >(x,y);
