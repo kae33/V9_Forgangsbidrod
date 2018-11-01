@@ -47,7 +47,7 @@
 ;;; Forgangsbidrod f er taknud sem bendir a breytu 
 ;;; sem inniheldur lista af pörum [[k1$g1], [k2$g2], ..., [kN$gN]] 
 ;;; theirra lykla k og gilda g sem eru i forgangsbidrodinni. Thar sem 
-;;; k1 verdur ad vera a undan k2 o.s.frv.
+;;; k1 verdur ad vera a undan k2 hafi k1 hærri forgang o.s.frv.
 buaTil =
 	fun()
 	{
