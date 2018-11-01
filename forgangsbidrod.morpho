@@ -45,10 +45,9 @@
 {{
 ;;; Fastayrding gagna
 ;;; Forgangsbidrod f er taknud sem bendir a breytu 
-;;; sem inniheldur lista [x1, x2, ..., xN] theirra 
-;;; gilda sem eru i forgangsbidrodinni. Thar sem 
-;;; x1 verdur ad vera a undan x2 o.s.frv.
-;;; ath thetta er rangt mida vid 3 vidfong baetaI(f,g,k)
+;;; sem inniheldur lista af listum [[k1, g1], [k2, g2], ..., [kN, gN]] 
+;;; theirra lykla og gilda sem eru i forgangsbidrodinni. Thar sem 
+;;; k1 verdur ad vera a undan k2 o.s.frv.
 buaTil =
 	fun()
 	{
