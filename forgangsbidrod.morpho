@@ -1,0 +1,131 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Honnunarskjal fyrir eininguna "forgangsbidrod" ;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; 
+;;; Innflutt (Imported):
+;;;  Notkun: b = erAUndan(x,y)
+;;;  Fyrir:  x og y eru gildi af theirri gerd sem vid
+;;;          viljum bera saman
+;;;  Eftir:  b er satt ef x verdur ad vera a undan y, 
+;;;          osatt ef y verdur ad vera a undan x.
+;;;
+;;;  Notkun: y = insert(x,u)
+;;;  Fyrir:  x er listi gilda af theirri gerd sem <<==
+;;;          raedur vid, i vaxandi rod midad vid <<==, 
+;;;          u er einnig gildi af theirri gerd.
+;;;  Eftir:  y er listi i vaxandi rod midad vid <<==
+;;;          sem inniheldur oll gildin ur x auk u.
+;;;
+;;; Innflutt (Exported):
+;;;  Notkun: f = buaTil()
+;;;  Eftir:  f er forgangsbidrod
+;;; 
+;;;  Notkun: b = erTom(f)
+;;;  Fyrir:  f er forgangbidrod
+;;;  Eftir:  b er satt th.th.a.a. forgangsbidrod f == null
+;;; 
+;;;  Notkun: f = baetaI(f,g,k)
+;;;  Fyrir:  f er forgangbidrod
+;;;  Eftir:  forgangsbidrod f ad vidbaettu gildi g a 
+;;;          stad i forgangsbidrod mida vid forgang <<==.
+;;;
+;;;  Notkun: g = saekja(f)
+;;;  Fyrir:  f er forgangbidrod
+;;;  Eftir:  gildi g med lykil k sem hefur haesta forgang,
+;;;          forgangsbidrodin an gildisins og lykli þess.
+;;;
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Honnunarskjali lykur her ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+"forgangsbidrod.mmod" = 
+!
+{{
+;;; Fastayrding gagna
+;;; Forgangsbidrod f er taknud sem bendir a breytu 
+;;; sem inniheldur lista [x1, x2, ..., xN] theirra 
+;;; gilda sem eru i forgangsbidrodinni. Thar sem 
+;;; x1 verdur ad vera a undan x2 o.s.frv.
+;;; ath thetta er rangt mida vid 3 vidfong baetaI(f,g,k)
+buaTil =
+	fun()
+	{
+		var l;
+        &f;
+	};
+
+erTom =
+    fun(f)
+    {
+        *f==[] && (return true);
+        return false;
+    };
+baetaI =
+    fun(f,g,k)
+    {
+        ;;; insert kemur her
+    }
+
+}}
+*
+"insert.mmod"
+*
+{{
+<<== = fun erAUndan(x,y);
+}}
+;
+
+
+"insert.mmod" = 
+!
+{{
+insert =
+	fun(x,u)
+	{
+		x==[] && (return [u]);
+		head(x) <<== u || (return u:x);
+		head(x) : insert(tail(x),u);
+	};
+}}
+;
+
+show "insert.mmod"; ;; spurning hvad thetta gerir
+
+"test1.mexe" = main in
+{{
+main =
+	fun()
+	{
+        f = buaTil();
+		var x=[1,9,2,8,3,7,4,6,5];
+		while( x!=[] )
+		{
+            ;;; Fastayrding lykkju:
+            ;;; samanlagt innihalda listinn x
+            ;;; og forgangsbidrodinrod f tolurnar ur 
+            ;;; pokanum {1,2,3,4,5,6,7,8,9}
+            baetaI(f,head(x),head(x));
+			x = tail(x);
+		};
+
+        while( !erTom(f) ) {
+            ;;; Fastayrding lykkju:
+            ;;; Samanlagt er forgangsbidrodin og 
+            ;;; tolurnar sem eru skrifadar ut
+            ;;; pokinn {1,2,3,4,5,6,7,8,9}
+		    writeln(saekja(f));
+        }
+	};
+}}
+*
+{{
+erAUndan = fun <(x,y);
+}}
+*
+BASIS
+;
+
+;;; copya thessa keyrslu med 
+;;; erAUndan = fun >(x,y);
