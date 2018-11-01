@@ -51,13 +51,15 @@
 buaTil =
 	fun()
 	{
-		var f = [];
+		var l = [], p;
+        p = &l;
+        return p;
 	};
 
 erTom =
     fun(f)
     {
-        if ( f==[] ){
+        if ( f==null ){
             return true;
         } else {
             return false;
@@ -102,6 +104,7 @@ main =
 	fun()
 	{
         var f = buaTil();
+        writeln(*f);
 		var x=[1,9,2,8,3,7,4,6,5];
 		while( x!=[] )
 		{
@@ -109,16 +112,18 @@ main =
             ;;; samanlagt innihalda listinn x
             ;;; og forgangsbidrodinrod f tolurnar ur 
             ;;; pokanum {1,2,3,4,5,6,7,8,9}
-            baetaI(f,head(x),head(x));
+            baetaI(*f,head(x),head(x));
 			x = tail(x);
+            writeln(*f);
 		};
 
-        while( !erTom(f) ) {
+        while( erTom(*f)==false ) {
             ;;; Fastayrding lykkju:
             ;;; Samanlagt er forgangsbidrodin og 
             ;;; tolurnar sem eru skrifadar ut
             ;;; pokinn {1,2,3,4,5,6,7,8,9}
-		    writeln(saekja(f));
+		    writeln(saekja(*f));
+            writeln("keyrist2");
         };
         writeln("hello");
 	};
