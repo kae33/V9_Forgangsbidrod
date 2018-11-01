@@ -45,8 +45,8 @@
 {{
 ;;; Fastayrding gagna
 ;;; Forgangsbidrod f er taknud sem bendir a breytu 
-;;; sem inniheldur lista af listum [[k1, g1], [k2, g2], ..., [kN, gN]] 
-;;; theirra lykla og gilda sem eru i forgangsbidrodinni. Thar sem 
+;;; sem inniheldur lista af pörum [[k1$g1], [k2$g2], ..., [kN$gN]] 
+;;; theirra lykla k og gilda g sem eru i forgangsbidrodinni. Thar sem 
 ;;; k1 verdur ad vera a undan k2 o.s.frv.
 buaTil =
 	fun()
@@ -58,13 +58,23 @@ buaTil =
 erTom =
     fun(f)
     {
-        *f==[] && (return true);
-        return false;
+        if ( *f==[] ){
+            return true;
+        } else {
+            return false;
+        }
     };
 baetaI =
     fun(f,g,k)
     {
-        ;;; insert kemur her
+        return insert(f,g:k);
+    }
+saekja = 
+    fun(f)
+    {
+        val res = tail(head(f));
+        f = tail(f);
+        return res;
     }
 
 }}
