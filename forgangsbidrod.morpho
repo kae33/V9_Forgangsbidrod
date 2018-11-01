@@ -11,9 +11,9 @@
 ;;;          osatt ef y verdur ad vera a undan x.
 ;;;
 ;;;  Notkun: y = insert(x,u)
-;;;  Fyrir:  x er listi gilda af theirri gerd sem <<==
-;;;          raedur vid, i vaxandi rod midad vid <<==, 
-;;;          u er einnig gildi af theirri gerd.
+;;;  Fyrir:  x er listi para af theirri gerd sem <<==
+;;;          raedur vid hausinn, i vaxandi rod midad vid <<==, 
+;;;          u er einnig par af theirri gerd.
 ;;;  Eftir:  y er listi i vaxandi rod midad vid <<==
 ;;;          sem inniheldur oll gildin ur x auk u.
 ;;;
@@ -59,7 +59,7 @@ buaTil =
 erTom =
     fun(f)
     {
-        if ( f==null ){
+        if ( *f==null ){
             return true;
         } else {
             return false;
@@ -68,13 +68,14 @@ erTom =
 baetaI =
     fun(f,g,k)
     {
-        return insert(f,g:k);
+        *f = insert(*f,g:k);
+        return f;
     };
 saekja = 
     fun(f)
     {
-        val res = tail(head(f));
-        f = tail(f);
+        val res = tail(head(*f));
+        *f = tail(*f);
         return res;
     };
 
@@ -86,7 +87,7 @@ insert =
 	fun(x,u)
 	{
 		x==[] && (return [u]);
-		head(x) <<== u || (return u:x);
+		head(head(x)) <<== head(u) || (return u:x);
 		head(x) : insert(tail(x),u);
 	};
 }}
@@ -103,8 +104,17 @@ show "forgangsbidrod.mmod";
 main =
 	fun()
 	{
+
         var f = buaTil();
+        
+        {;;;
         writeln(*f);
+        ;;;writeln(baetaI(*f,5,5));
+        *f = baetaI(*f,5,5);  ;;;firkar!!!
+        *f = baetaI(*f,3,5);
+        writeln(*f);
+        ;;;}
+
 		var x=[1,9,2,8,3,7,4,6,5];
 		while( x!=[] )
 		{
@@ -112,20 +122,21 @@ main =
             ;;; samanlagt innihalda listinn x
             ;;; og forgangsbidrodinrod f tolurnar ur 
             ;;; pokanum {1,2,3,4,5,6,7,8,9}
-            baetaI(*f,head(x),head(x));
+            f = baetaI(f,head(x),head(x));
 			x = tail(x);
-            writeln(*f);
+            ;;;writeln(*f);
 		};
 
-        while( erTom(*f)==false ) {
+        while( erTom(f)==false ) {
             ;;; Fastayrding lykkju:
             ;;; Samanlagt er forgangsbidrodin og 
             ;;; tolurnar sem eru skrifadar ut
             ;;; pokinn {1,2,3,4,5,6,7,8,9}
-		    writeln(saekja(*f));
-            writeln("keyrist2");
+		    write(saekja(f)++" ");
         };
-        writeln("hello");
+        writeln();
+
+        ;;;}
 	};
 }}
 *
@@ -133,6 +144,56 @@ main =
 *
 {{
 erAUndan = fun <(x,y);
+}}
+*
+BASIS
+;
+
+"test2.mexe" = main in
+{{
+main =
+	fun()
+	{
+
+        var f = buaTil();
+        
+        {;;;
+        writeln(*f);
+        ;;;writeln(baetaI(*f,5,5));
+        *f = baetaI(*f,5,5);  ;;;firkar!!!
+        *f = baetaI(*f,3,5);
+        writeln(*f);
+        ;;;}
+
+		var x=[1,9,2,8,3,7,4,6,5];
+		while( x!=[] )
+		{
+            ;;; Fastayrding lykkju:
+            ;;; samanlagt innihalda listinn x
+            ;;; og forgangsbidrodinrod f tolurnar ur 
+            ;;; pokanum {1,2,3,4,5,6,7,8,9}
+            f = baetaI(f,head(x),head(x));
+			x = tail(x);
+            ;;;writeln(*f);
+		};
+
+        while( erTom(f)==false ) {
+            ;;; Fastayrding lykkju:
+            ;;; Samanlagt er forgangsbidrodin og 
+            ;;; tolurnar sem eru skrifadar ut
+            ;;; pokinn {1,2,3,4,5,6,7,8,9}
+		    write(saekja(f)++" ");
+        };
+        writeln();
+
+        ;;;}
+	};
+}}
+*
+"forgangsbidrod.mmod"
+*
+{{
+erAUndan = fun >(x,y);
 }}
 *
 BASIS
